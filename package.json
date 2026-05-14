@@ -21,8 +21,12 @@
     "scripts": {
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
+        "test": "vitest",
         "prepublishOnly": "pnpm build",
         "prepare": "simple-git-hooks"
+    },
+    "dependencies": {
+        "local-pkg": "^1.1.2"
     },
     "devDependencies": {
         "@antfu/eslint-config": "^9.0.0",
@@ -38,15 +42,11 @@
         "typescript": "^6.0.3",
         "vitest": "^4.1.6"
     },
-    "simpleGitHooks": {
+    "simple-git-hooks": {
         "pre-commit": "npx nano-staged",
         "commit-msg": "node scripts/verify-commit.js"
     },
     "nano-staged": {
         "*": "eslint --fix"
-    },
-    "dependencies": {
-        "local-pkg": "^1.1.2",
-        "pkg-types": "^2.3.1"
     }
 }
