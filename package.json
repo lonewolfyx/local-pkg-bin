@@ -18,7 +18,22 @@
         "package"
     ],
     "sideEffects": false,
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
     "scripts": {
+        "dev": "tsdown --watch",
+        "build": "tsdown",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
         "test": "vitest",
