@@ -4,11 +4,18 @@ import { getPackageInfo, isPackageExists } from 'local-pkg'
 
 export type PackageBin = Record<string, string>
 
-export const resolvePackageBin = async (pkg: string): Promise<PackageBin> => {
-    if (!isPackageExists(pkg))
-        return {}
+export interface IOptions {
+    paths?: string[]
+}
 
-    const info = await getPackageInfo(pkg) as PackageInfo
+export const resolvePackageBin = async (pkg: string, options: IOptions = {}): Promise<PackageBin> => {
+    const paths = options.paths ?? []
+
+    if (!isPackageExists(pkg, { paths })) {
+        return {}
+    }
+
+    const info = await getPackageInfo(pkg, { paths }) as PackageInfo
 
     const { bin } = info.packageJson
     if (!bin)
